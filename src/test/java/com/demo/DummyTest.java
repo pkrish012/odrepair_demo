@@ -5,13 +5,18 @@ import static org.junit.Assert.*;
 
 public class DummyTest {
 
+    // Shared state to introduce order-dependency
+    private static boolean sharedFlag = false;
+
     @Test
-    public void testPass() {
-        assertTrue(true);
+    public void testSetFlag() {
+        sharedFlag = true;  // Sets shared state
+        assertTrue(sharedFlag);
     }
 
     @Test
-    public void testFail() {
-        assertFalse(false);
+    public void testDependsOnFlag() {
+        // Fails if run after testSetFlag
+        assertFalse(sharedFlag);
     }
 }
