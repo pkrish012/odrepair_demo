@@ -1,28 +1,20 @@
 package com.demo;
 
-public class OrderBugTest {
+import org.junit.Test;
+import static org.junit.Assert.*;
 
-    private final String[] messages = { "BAD_1", "OK_2", "BAD_3" };
+public class DataManagerTest {
 
-    // Swap two messages (simulates different orders)
-    public void shuffle(int i, int j) {
-        String temp = messages[i];
-        messages[i] = messages[j];
-        messages[j] = temp;
+    @Test
+    public void testGuestStatus() {
+        // This fails if another test called login() and didn't logout()
+        assertEquals("GUEST", DataManager.getStatus());
     }
 
-    public String getMessage(int index) {
-        return messages[index];
-    }
-
-    public int size() {
-        return messages.length;
-    }
-
-    public void reset() {
-        // Restore original order
-        messages[0] = "BAD_1";
-        messages[1] = "OK_2";
-        messages[2] = "BAD_3";
+    @Test
+    public void testLoginStatus() {
+        DataManager.login("Alice");
+        assertEquals("LOGGED_IN", DataManager.getStatus());
+        // ODRepair will notice that Alice is still logged in after this!
     }
 }
