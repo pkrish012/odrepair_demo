@@ -1,0 +1,20 @@
+package com.demo;
+
+public class Listener {
+
+    private String received;
+
+    public void onMessage(String msg) {
+        if (msg.startsWith("OK")) {
+            received = msg;
+        }
+    }
+
+    public String getReceived() {
+        return received;
+    }
+
+    public void reset() {
+        received = null;
+    }
+}
