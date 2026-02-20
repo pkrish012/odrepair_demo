@@ -19,4 +19,10 @@ public class DummyTest {
         // Fails if run after testSetFlag
         assertFalse(sharedFlag);
     }
+
+    // Cleaner
+    @Test
+    public void testResetFlag() {
+        sharedFlag = false; // Cleaner resets shared state
+    }
 }
