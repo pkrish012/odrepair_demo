@@ -1,3 +1,5 @@
+package com.demo;
+
 import org.junit.Test;
 import java.util.Random;
 
