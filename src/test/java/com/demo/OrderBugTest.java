@@ -17,4 +17,10 @@ public class DataManagerTest {
         assertEquals("LOGGED_IN", DataManager.getStatus());
         // ODRepair will notice that Alice is still logged in after this!
     }
+    
+    @Test
+    public void polluteState() {
+        // Sets the static field but never resets it
+        DataManager.login("EvilPolluter");
+    }
 }
