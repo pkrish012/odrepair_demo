@@ -7,20 +7,23 @@ public class DataManagerTest {
 
     @Test
     public void testGuestStatus() {
-        // This fails if another test called login() and didn't logout()
+        DataManager.resetAll();
         assertEquals("GUEST", DataManager.getStatus());
     }
 
     @Test
     public void testLoginStatus() {
+        DataManager.resetAll();
         DataManager.login("Alice");
         assertEquals("LOGGED_IN", DataManager.getStatus());
-        // ODRepair will notice that Alice is still logged in after this!
+        assertNotNull(DataManager.getSession("Alice"));
     }
-    
+
     @Test
     public void polluteState() {
-        // Sets the static field but never resets it
+        // Pollute multiple state variables without resetting
         DataManager.login("EvilPolluter");
+        DataManager.incrementCounter();
+        DataManager.sessionData.put("X", "Y");
     }
 }
