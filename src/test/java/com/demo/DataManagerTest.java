@@ -7,7 +7,7 @@ public class DataManagerTest {
 
     @Test
     public void testGuestStatus() {
-        DataManager.resetAll();
+        //DataManager.resetAll();
         assertEquals("GUEST", DataManager.getStatus());
     }
 
